@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MorePay</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    
+    <div class="cont">
+        <header>
+            <div class="logo">WF</div>
+            <h1>MorePay</h1>
+            <p class="text">We make banking swift and safe.</p>
+        </header>
+
+        <div class="bankingSection">
+            <h2 style="color: tomato;">👋Welcome back<br><span id="displayName" ></span></h2>
+            <p class="text2">Account Blance: <br><span style="font-size: 30px;"> ₦</span><span id="balance" style="font-size: 30px;">0</span></p>
+           
+            <div id="msg"></div>
+
+            <input type="number" id="amount" placeholder="Enter amount">
+            <div class="btn">
+            <button onclick="deposit()" style="background-color: green;">Deposit</button> <br>
+            <button onclick="withdraw()">withdraw</button>
+            </div>
+
+        </div>
+
+               <footer class="bank-footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h2 style="margin-bottom: 50px; color: #ffb01c;">MorePay</h2>
+      <p>Your secure digital banking partner.</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Security</a></li>
+        <li><a href="#">Investor Relations</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Report Fraud</a></li>
+        <li><a href="#">FAQs</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+<button class="bt" onclick="logout()">Logout</button>
+  <div class="footer-bottom">
+    <p>&copy; 2025 MorePay. All rights reserved.</p>
+  </div>
+</footer>
+    </div>
+
+      <!-- footer -->
+
+
+    <script>
+
+        window.onload = function(){
+             if(localStorage.getItem('login') !== 'true'){
+            window.location.href = "index.html";
+        }
+        }
+        
+  
+    class BankAcct{
+        #balance = 0;
+
+        deposit(amount){
+            if(amount > 0){
+           this.#balance += amount;
+           return true;
+            } 
+            return false;
+        }
+
+        withdraw(amount){
+            if (amount > this.#balance){
+                return false;
+            }
+            if(amount > 0 && amount <= this.#balance) {
+                this.#balance -= amount;
+                return true;
+            } 
+             return false;
+        }
+      
+
+           
+     getBalance(){
+        return this.#balance
+    }
+    }
+    
+    const account = new BankAcct();
+
+
+  //deposit
+
+  function deposit(){
+    let msg =  document.getElementById('msg');
+    let amt = parseFloat( document.getElementById('amount').value);
+    
+    const sucess  =  account.deposit(amt);
+    if (sucess){
+        msg.textContent = 'Deposit sucesssful!';
+         msg.style.color =  'green'
+         setTimeout (function(){
+             msg.textContent = '';
+         },3000)
+    } else{
+        msg.textContent = 'Enter a valid deposit amount'
+        msg.style.color = 'red';
+        setTimeout (function(){
+            msg.textContent = '';
+        },2000);
+        return;
+    }
+    
+
+     document.getElementById('balance').innerText = account.getBalance();
+  }
+
+  //withdraw
+
+function withdraw(){
+ 
+    let msg =  document.getElementById('msg');
+    let amt =  document.getElementById('amount').value;
+ if (isNaN(amt) || amt <= 0) {
+     msg.textContent = 'Enter a valid withdrawal amount'
+   msg.style.color = 'red';
+    setTimeout (function(){
+        msg.textContent = '';
+    },2000);
+    return;
+}
+
+
+    const success = account.withdraw(amt); 
+    if (!success){
+        msg.textContent = 'Insufficient Funds'
+          setTimeout (function(){
+            msg.style.color = 'red';
+             msg.textContent = '';
+         },2000)
+    } else{
+         msg.textContent = 'Withdrawal sucesssful!';
+         msg.style.color =  'green'
+         setTimeout (function(){
+             msg.textContent = '';
+         },3000)
+    }
+
+     document.getElementById('balance').innerText = account.getBalance();
+   
+}
+
+
+document.getElementById('displayName').textContent=  localStorage.getItem('username')
+
+
+function logout(){
+    localStorage.clear()
+    window.location.href = "index.html";
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    
+    background-color: black;
+}
+
+header{
+    background-color: #ff4343;
+    width: 100%;
+    text-align: center;
+    height: 100px;
+}
+
+h1{
+    color: rgb(255, 176, 28);
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cont{
+    background-color: white;
+   
+    width: 400px;
+    border-radius: 8px;
+    height: 100vh;
+    
+     margin: 0 auto ;
+    display: flex;
+     justify-content: flex-start; 
+     align-items: center;
+    flex-direction: column;
+   
+    
+}
+
+.logo{
+    background-color: rgb(255, 176, 28);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 30px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    margin-left: 10px;
+    align-items: center;
+}
+
+.inputfield{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    background-color: #e4e4e4;
+    width: 100%;
+    height: 490px;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+input{
+    width: 20rem;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 7px;
+}
+
+.inputcont{
+    
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    width: 10rem;
+    height: 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+.text2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-top: 20px;
+    font-size: 20px;
+    color: tomato;
+}
+
+.text{
+    color: white;
+}
+
+@media screen and (max-width: 768px){
+     .cont{
+        width: 100%;
+    }
+
+    header{
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .inputfield{
+        height: 100vh;
+    }
+
+       input{
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .text2{
+        font-size: 27px;
+    }
+
+    label{
+        font-size: 20px;
+        
+    }
+
+    button{
+         height: 50px;
+        width: 170px;
+        font-size: 20px;
+       margin-top: 10px;
+    }
+
+    .inputcont{
+        margin-top: 7px;
+    }
+
+
+}
