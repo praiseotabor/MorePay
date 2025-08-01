@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<input type="number" id="amount" placeholder="Enter amount" />
+<button onclick="deposit()">Deposit</button>
+<button onclick="withdraw()">Withdraw</button>
+<div>Balance: <span id="balance">0</span></div>
+
+    <script>
+  // class BankAccount {
+  //   #balance = 0;
+
+  //   deposit(amount) {
+  //     if (amount > 0) {
+  //       this.#balance += amount;
+  //     }
+  //   }
+
+  //   withdraw(amount) {
+  //     if (amount > 0 && amount <= this.#balance) {
+  //       this.#balance -= amount;
+  //     }
+  //   }
+
+  //   getBalance() {
+  //     return this.#balance;
+  //   }
+  // }
+
+  // // Create a single shared instance
+  // const account = new BankAccount();
+
+  // function deposit() {
+  //   let amt = parseFloat(document.getElementById('amount').value);
+  //   if (isNaN(amt)) return;
+
+  //   account.deposit(amt);
+  //   document.getElementById('balance').innerText = account.getBalance();
+  // }
+
+  // function withdraw() {
+  //   let amt = parseFloat(document.getElementById('amount').value);
+  //   if (isNaN(amt)) return;
+
+  //   account.withdraw(amt);
+  //   document.getElementById('balance').innerText = account.getBalance();
+  // }
+
+
+  class BankAccount {
+    #balance = 0;
+
+    deposit(amount) {
+      if (amount > 0) {
+        this.#balance += amount;
+        return true;
+      }
+      return false;
+    }
+
+    withdraw(amount) {
+      if (amount > this.#balance) {
+        return false;
+      }
+      if (amount > 0) {
+        this.#balance -= amount;
+        return true;
+      }
+      return false;
+    }
+
+    getBalance() {
+      return this.#balance;
+    }
+  }
+
+  // 🔁 One persistent instance — so it remembers balance
+  const account = new BankAccount();
+
+  function deposit() {
+    const amt = parseFloat(document.getElementById('amount').value);
+    const message = document.getElementById('message');
+
+    if (isNaN(amt) || amt <= 0) {
+      message.textContent = "Enter a valid deposit amount.";
+      return;
+    }
+
+    account.deposit(amt); // 💰 Adds to current balance
+    document.getElementById('balance').innerText = account.getBalance();
+    message.textContent = "";
+  }
+
+  function withdraw() {
+    const amt = parseFloat(document.getElementById('amount').value);
+    const message = document.getElementById('message');
+
+    if (isNaN(amt) || amt <= 0) {
+      message.textContent = "Enter a valid withdrawal amount.";
+      return;
+    }
+
+    const success = account.withdraw(amt);
+
+    if (!success) {
+      message.textContent = "Insufficient Funds.";
+    } else {
+      message.textContent = "";
+    }
+
+    document.getElementById('balance').innerText = account.getBalance();
+  }
+</script>
+</body>
+</html>

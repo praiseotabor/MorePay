@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MorePay</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href='dashbord/dasboard.html'></a>
+    
+    <div class="cont">
+         <header>
+            <div class="logo">MP</div>
+            <h1>MorePay</h1>
+            <p class="text">We make banking swift and safe.</p>
+        </header>
+
+        <div class="inputfield">
+
+            <p class="text2">
+                Sign up and start <br><span>Banking with us now!</span>
+            </p>
+
+            <div class="inputcont">
+                <label for="name">Full name:</label>
+                <input id="name" type="text" placeholder="Enter your full name">
+                
+            </div>
+
+            <div class="inputcont">
+                <label for="email">Email</label>
+                <input  id="email" type="email" placeholder="Enter your email">
+                
+            </div>
+
+            <div class="inputcont">
+                <label for="phone">Phone number</label>
+                <input id="phone" type="text" placeholder="Enter your phone number">
+                
+            </div>
+
+            <div class="inputcont">
+                <label for="pass">Password</label>
+                <input id="pass" type="password" placeholder="Enter a password">
+                
+            </div>
+               <div id="msg"></div>
+                <div class="inputcont">
+                 <button id="btn" onclick="xx()">Submit</button>
+            </div>
+           
+        </div>
+    </div>
+
+
+    <script>
+        //variable
+      window.onload = function(){
+        if(localStorage.getItem('login') === 'true'){
+            window.location.href = "dashbord/dasboard.html";
+        }
+      };
+
+        let names = document.getElementById('name');
+        let emails = document.getElementById('email');
+        let phones = document.getElementById('phone');
+        let pass = document.getElementById('pass');
+        let btn = document.getElementById('btn');
+
+     //name
+     names.addEventListener('input',function(){
+       
+        if(names.value.length <= 5 && names !== '' ){
+            btn.disabled = true;
+            btn.style.opacity = '0.5'
+        }else{
+           
+             btn.disabled = false;
+            btn.style.opacity = '1';
+        }
+        return 
+     });
+
+     //email
+    
+// Phone input check
+phones.addEventListener('input', function () {
+    if (phones.value.length <= 10) {
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        
+        msg.style.color = 'red';
+
+        setTimeout(function () {
+            msg.textContent = '';
+        }, 2000);
+    } else {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+    }
+    return
+});
+
+emails.addEventListener('input', function(){
+    if (!emails.value.includes('@')  && !emails.value.includes('.')){
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+    }else {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+    }
+    return
+})
+
+
+pass.addEventListener('input', function(){
+    if(pass.value.length <= 5){
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        pass.style.border = '2px solid red'
+        pass.style.color = 'red'
+    }else {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        pass.style.border = '1px solid black'
+        pass.style.color = 'black'
+    }
+  return false;
+})
+     function xx(){
+        let username = names.value.trim();
+        let usermail = emails.value.trim();
+        let userphone = phones.value.trim();
+        let userpass = pass.value.trim();
+
+        
+        if(!usermail || !username || !userphone || !userpass){
+            document.getElementById('msg');
+            btn.disabled = true;
+            msg.textContent = 'Fill all field'
+            msg.style.color = 'red'
+            btn.style.opacity = '0.5'
+
+            setTimeout(function(){
+                msg.textContent = ''
+                 btn.disabled = true;
+              
+               
+            },2000)
+            return false;
+        } else{
+             document.getElementById('msg');
+            msg.textContent = 'Sign up sucessfully!'
+          btn.textContent = 'Sumitting...'
+            btn.style.opacity = '1'
+            msg.style.color = 'green'
+            btn.disabled = false;
+
+            setTimeout(function(){
+                msg.textContent = ''
+               btn.disabled = false;
+            },3000)
+
+        }
+
+        
+
+               localStorage.setItem('username', username);
+               localStorage.setItem('usermail', usermail)
+               localStorage.setItem('userphone', userphone)
+               localStorage.setItem('userpass', userpass)
+               localStorage.setItem('login', 'true')
+                window.location.href = "dashbord/dasboard.html"
+
+                window.reload();
+               
+     }
+    </script>
+</body>
+</html>
