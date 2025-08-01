@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href='dashbord/dasboard.html'></a>
+    
     
     <div class="cont">
          <header>
@@ -42,7 +42,7 @@
 
             <div class="inputcont">
                 <label for="pass">Password</label>
-                <input id="pass" type="password" placeholder="Enter a password">
+                <input id="pass" style="border: 1px solid white;" type="password" placeholder="Enter a password">
                 
             </div>
                <div id="msg"></div>
@@ -71,7 +71,7 @@
      //name
      names.addEventListener('input',function(){
        
-        if(names.value.length <= 5 && names !== '' ){
+        if(names.value.length <= 5 ){
             btn.disabled = true;
             btn.style.opacity = '0.5'
         }else{
@@ -84,9 +84,11 @@
 
      //email
     
+//1' || '2'|| '3'|| '4' ||'5'|| '6' || '7'|| '8' ||'9'|| '0' || '+'
+
 // Phone input check
 phones.addEventListener('input', function () {
-    if (phones.value.length <= 10) {
+    if (phones.value.length <= 10 && phones.value !== 1) {
         btn.disabled = true;
         btn.style.opacity = '0.5';
         
@@ -115,7 +117,7 @@ emails.addEventListener('input', function(){
 
 
 pass.addEventListener('input', function(){
-    if(pass.value.length <= 5){
+    if(pass.value.length <= 5 ){
         btn.disabled = true;
         btn.style.opacity = '0.5';
         pass.style.border = '2px solid red'
