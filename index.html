@@ -103,7 +103,7 @@ phones.addEventListener('input', function () {
 });
 
 emails.addEventListener('input', function(){
-    if (!emails.value.includes('@')  && !emails.value.includes('.')){
+    if (!emails.value.includes('@')  || !emails.value.includes('.')){
         btn.disabled = true;
         btn.style.opacity = '0.5';
     }else {
